@@ -27,15 +27,16 @@ public class Main {
         app.start(8080);
     }
     public static void javalinStudentsSetup(Javalin app) {
-        /*
         app.get("/students", context ->{
             StudentGetter getter = new StudentGetter();
+            String result = new String();
             List<Student> students = getter.getAll();
-
-            context.result();
+            for (Student student : students) {
+                result += student.toString() + "\n";
+            }
+            context.result(result);
         });
 
-         */
 
         app.get("/student/:id", context ->{
             StudentGetter getter = new StudentGetter();
@@ -71,16 +72,17 @@ public class Main {
         });
     }
     public static void javalinGroupsSetup(Javalin app) {
-        /*
+
         app.get("/groups", context -> {
            GroupGetter getter = new GroupGetter();
            List<Group> groups = getter.getAll();
+           String result = new String();
            for (Group group : groups) {
-               context.result(group.toString());
+               result += group.toString() + "\n";
            }
+           context.result(result);
         });
 
-         */
         app.get("/group/:id", context -> {
             GroupGetter getter = new GroupGetter();
             Integer id = Integer.parseInt(context.pathParam("id"));

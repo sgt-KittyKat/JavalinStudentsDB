@@ -70,7 +70,7 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", group=" + group +
+                ", group=" + group.toString() +
                 '}';
     }
 }
