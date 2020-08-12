@@ -2,6 +2,7 @@ package com.github.sgt_KittyKat.database.config;
 
 import com.github.sgt_KittyKat.database.models.StudentsGroup;
 import com.github.sgt_KittyKat.database.models.Student;
+import com.github.sgt_KittyKat.database.models.Supervisor;
 import com.github.sgt_KittyKat.database.models.Teacher;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
@@ -19,6 +20,7 @@ public class DatabaseTools {
             TableUtils.createTableIfNotExists(CONNECTION_SOURCE, Student.class);
             TableUtils.createTableIfNotExists(CONNECTION_SOURCE, StudentsGroup.class);
             TableUtils.createTableIfNotExists(CONNECTION_SOURCE, Teacher.class);
+            TableUtils.createTableIfNotExists(CONNECTION_SOURCE, Supervisor.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }

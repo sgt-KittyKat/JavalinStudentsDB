@@ -5,26 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/config/DatabaseTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/config/DatabaseTools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/models/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/models/StudentsGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/models/StudentsGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/javalin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/javalin/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/requests/groups/GroupDeleter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/requests/groups/GroupDeleter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/requests/students/StudentPatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/requests/students/StudentPatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/requests/students/StudentPoster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/requests/students/StudentPoster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Database/Config/DatabaseTools.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Database/Config/DatabaseTools.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Database/Models/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Database/Models/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Database/Models/StudentsGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Database/Models/StudentsGroup.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Javalin/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Javalin/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupDeleter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupDeleter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupGetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupGetter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupPatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupPatcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupPoster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupPoster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Groups/GroupRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Request.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Request.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentDeleter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentDeleter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentGetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentGetter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentPatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentPatcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentPoster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentPoster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/sgt_KittyKat/Requests/Students/StudentRequest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,10 +78,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixed groups bug" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="400" y="45" key="#com.intellij.ide.util.MemberChooser" timestamp="1597207121071">
+    <state x="400" y="45" key="#com.intellij.ide.util.MemberChooser" timestamp="1597210833688">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state x="400" y="45" key="#com.intellij.ide.util.MemberChooser/0.0.1193.720@0.0.1193.720" timestamp="1597207121071" />
+    <state x="400" y="45" key="#com.intellij.ide.util.MemberChooser/0.0.1193.720@0.0.1193.720" timestamp="1597210833688" />
     <state x="152" y="287" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1597037443496">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
@@ -113,30 +94,30 @@
       <screen x="0" y="0" width="1193" height="720" />
     </state>
     <state x="151" y="0" key="CommitChangelistDialog2/0.0.1193.720@0.0.1193.720" timestamp="1597206098744" />
-    <state width="1193" height="223" key="GridCell.Tab.0.bottom" timestamp="1597210158457">
+    <state width="1193" height="223" key="GridCell.Tab.0.bottom" timestamp="1597212128062">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state width="1193" height="223" key="GridCell.Tab.0.bottom/0.0.1193.720@0.0.1193.720" timestamp="1597210158457" />
-    <state width="1193" height="223" key="GridCell.Tab.0.center" timestamp="1597210158457">
+    <state width="1193" height="223" key="GridCell.Tab.0.bottom/0.0.1193.720@0.0.1193.720" timestamp="1597212128062" />
+    <state width="1193" height="223" key="GridCell.Tab.0.center" timestamp="1597212128062">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state width="1193" height="223" key="GridCell.Tab.0.center/0.0.1193.720@0.0.1193.720" timestamp="1597210158457" />
-    <state width="1193" height="223" key="GridCell.Tab.0.left" timestamp="1597210158456">
+    <state width="1193" height="223" key="GridCell.Tab.0.center/0.0.1193.720@0.0.1193.720" timestamp="1597212128062" />
+    <state width="1193" height="223" key="GridCell.Tab.0.left" timestamp="1597212128062">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state width="1193" height="223" key="GridCell.Tab.0.left/0.0.1193.720@0.0.1193.720" timestamp="1597210158456" />
-    <state width="1193" height="223" key="GridCell.Tab.0.right" timestamp="1597210158457">
+    <state width="1193" height="223" key="GridCell.Tab.0.left/0.0.1193.720@0.0.1193.720" timestamp="1597212128062" />
+    <state width="1193" height="223" key="GridCell.Tab.0.right" timestamp="1597212128062">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state width="1193" height="223" key="GridCell.Tab.0.right/0.0.1193.720@0.0.1193.720" timestamp="1597210158457" />
+    <state width="1193" height="223" key="GridCell.Tab.0.right/0.0.1193.720@0.0.1193.720" timestamp="1597212128062" />
     <state x="261" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1597204924563">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
     <state x="261" y="185" key="com.intellij.ide.util.TipDialog/0.0.1193.720@0.0.1193.720" timestamp="1597204924563" />
-    <state x="253" y="161" width="672" height="677" key="run.anything.popup" timestamp="1597210102802">
+    <state x="253" y="161" width="672" height="677" key="run.anything.popup" timestamp="1597211012733">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state x="253" y="161" width="672" height="677" key="run.anything.popup/0.0.1193.720@0.0.1193.720" timestamp="1597210102802" />
+    <state x="253" y="161" width="672" height="677" key="run.anything.popup/0.0.1193.720@0.0.1193.720" timestamp="1597211012733" />
     <state x="259" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1597056197147">
       <screen x="0" y="0" width="1193" height="720" />
     </state>

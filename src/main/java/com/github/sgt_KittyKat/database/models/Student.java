@@ -13,16 +13,26 @@ public class Student {
     private String surname;
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private StudentsGroup group;
-    public Student(int id, String name, String surname, StudentsGroup group) {
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private Supervisor supervisor;
+    public Student(int id, String name, String surname, StudentsGroup group, Supervisor supervisor) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.group = group;
+        this.supervisor = supervisor;
     }
 
     public Student() {
     }
 
+    public Supervisor getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(Supervisor supervisor) {
+        this.supervisor = supervisor;
+    }
 
     public int getId() {
         return id;
@@ -62,7 +72,8 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", group= " + group +
+                ", group=" + group +
+                ", supervisor=" + supervisor +
                 '}';
     }
 }

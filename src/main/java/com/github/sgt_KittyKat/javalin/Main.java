@@ -2,6 +2,7 @@ package com.github.sgt_KittyKat.javalin;
 
 import com.github.sgt_KittyKat.database.models.StudentsGroup;
 import com.github.sgt_KittyKat.database.models.Student;
+import com.github.sgt_KittyKat.database.models.Supervisor;
 import com.github.sgt_KittyKat.database.models.Teacher;
 import com.github.sgt_KittyKat.requests.groups.GroupDeleter;
 import com.github.sgt_KittyKat.requests.groups.GroupGetter;
@@ -11,6 +12,10 @@ import com.github.sgt_KittyKat.requests.students.StudentDeleter;
 import com.github.sgt_KittyKat.requests.students.StudentGetter;
 import com.github.sgt_KittyKat.requests.students.StudentPatcher;
 import com.github.sgt_KittyKat.requests.students.StudentPoster;
+import com.github.sgt_KittyKat.requests.supervisors.SupervisorDeleter;
+import com.github.sgt_KittyKat.requests.supervisors.SupervisorGetter;
+import com.github.sgt_KittyKat.requests.supervisors.SupervisorPatcher;
+import com.github.sgt_KittyKat.requests.supervisors.SupervisorPoster;
 import com.github.sgt_KittyKat.requests.teachers.TeacherDeleter;
 import com.github.sgt_KittyKat.requests.teachers.TeacherGetter;
 import com.github.sgt_KittyKat.requests.teachers.TeacherPatcher;
@@ -25,6 +30,7 @@ public class Main {
         javalinStudentsSetup(app);
         javalinGroupsSetup(app);
         javalinTeacherSetup(app);
+        javalinSupervisorSetup(app);
         app.start(8080);
     }
     public static void javalinStudentsSetup(Javalin app) {
@@ -52,7 +58,7 @@ public class Main {
             context.result("deleted student " + id);
         });
 
-        app.patch("/student/:id/:name/:surname/:groupId", context -> {
+        app.patch("/student/:id/:name/:surname/:groupId/:supervisorId", context -> {
             StudentPatcher patcher = new StudentPatcher();
             Integer id = Integer.parseInt(context.pathParam("id"));
             String name = context.pathParam("name");
@@ -62,21 +68,29 @@ public class Main {
             GroupGetter getter = new GroupGetter();
             StudentsGroup group = getter.get(id);
 
-            patcher.patch(new Student(id, name, surname, group));
+            Integer superId = Integer.parseInt(context.pathParam("supervisorId"));
+            SupervisorGetter supervisorGetter = new SupervisorGetter();
+            Supervisor supervisor = supervisorGetter.get(superId);
+
+            patcher.patch(new Student(id, name, surname, group, supervisor));
             context.result("patched student " + id);
         });
 
-        app.post("/student/:id/:name/:surname/:groupId", context -> {
+        app.post("/student/:id/:name/:surname/:groupId/:supervisorId", context -> {
             StudentPoster poster = new StudentPoster();
             Integer id = Integer.parseInt(context.pathParam("id"));
             String name = context.pathParam("name");
             String surname = context.pathParam("surname");
 
             Integer groupId = Integer.parseInt(context.pathParam("groupId"));
-            GroupGetter getter = new GroupGetter();
-            StudentsGroup group = getter.get(id);
+            GroupGetter groupGetter = new GroupGetter();
+            StudentsGroup group = groupGetter.get(id);
 
-            poster.post(new Student(id, name, surname, group));
+            Integer superId = Integer.parseInt(context.pathParam("supervisorId"));
+            SupervisorGetter supervisorGetter = new SupervisorGetter();
+            Supervisor supervisor = supervisorGetter.get(superId);
+
+            poster.post(new Student(id, name, surname, group, supervisor));
             context.result("posted student " + id);
         });
     }
@@ -166,6 +180,44 @@ public class Main {
             String surname = context.pathParam("surname");
             patcher.patch(new Teacher(id, name, surname));
             context.result("patched teacher " + id);
+        });
+    }
+    public static void javalinSupervisorSetup(Javalin app) {
+        app.get("/supervisors", context -> {
+            SupervisorGetter getter = new SupervisorGetter();
+            List<Supervisor> supervisors = getter.getAll();
+            String result = new String();
+            for (Supervisor supervisor : supervisors) {
+                result += supervisor.toString() + "\n";
+            }
+            context.result(result);
+        });
+        app.get("/supervisor/:id" , context -> {
+            SupervisorGetter getter = new SupervisorGetter();
+            Integer id = Integer.parseInt(context.pathParam("id"));
+            context.result(getter.get(id).toString());
+        });
+        app.delete("supervisor/:id", context -> {
+            SupervisorDeleter deleter = new SupervisorDeleter();
+            Integer id = Integer.parseInt(context.pathParam("id"));
+            deleter.delete(id);
+            context.result("deleted supervisor " + id);
+        });
+        app.post("supervisor/:id/:name/:surname" , context -> {
+            SupervisorPoster poster = new SupervisorPoster();
+            Integer id = Integer.parseInt(context.pathParam("id"));
+            String name = context.pathParam("name");
+            String surname = context.pathParam("surname");
+            poster.post(new Supervisor(id, name, surname));
+            context.result("posted supervisor" + id);
+        });
+        app.patch("supervisor/:id/:name/:surname", context -> {
+            SupervisorPatcher patcher = new SupervisorPatcher();
+            Integer id = Integer.parseInt(context.pathParam("id"));
+            String name = context.pathParam("name");
+            String surname = context.pathParam("surname");
+            patcher.patch(new Supervisor(id, name, surname));
+            context.result("patched supervisor " + id);
         });
     }
 }
