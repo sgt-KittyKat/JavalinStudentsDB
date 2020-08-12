@@ -1,4 +1,4 @@
-package com.github.sgt_KittyKat.Requests.Groups;
+package com.github.sgt_KittyKat.requests.groups;
 
 import java.sql.SQLException;
 

@@ -1,6 +1,6 @@
-package com.github.sgt_KittyKat.Requests.Students;
+package com.github.sgt_KittyKat.requests.students;
 
-import com.github.sgt_KittyKat.Database.Models.Student;
+import com.github.sgt_KittyKat.database.models.Student;
 
 import java.sql.SQLException;
 import java.util.List;

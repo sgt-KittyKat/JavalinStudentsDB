@@ -1,7 +1,7 @@
-package com.github.sgt_KittyKat.Database.Config;
+package com.github.sgt_KittyKat.database.config;
 
-import com.github.sgt_KittyKat.Database.Models.Group;
-import com.github.sgt_KittyKat.Database.Models.Student;
+import com.github.sgt_KittyKat.database.models.StudentsGroup;
+import com.github.sgt_KittyKat.database.models.Student;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -16,7 +16,7 @@ public class DatabaseTools {
         try {
             CONNECTION_SOURCE = new JdbcConnectionSource(JDBC_CONNECTION_STRING);
             TableUtils.createTableIfNotExists(CONNECTION_SOURCE, Student.class);
-            TableUtils.createTableIfNotExists(CONNECTION_SOURCE, Group.class);
+            TableUtils.createTableIfNotExists(CONNECTION_SOURCE, StudentsGroup.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }

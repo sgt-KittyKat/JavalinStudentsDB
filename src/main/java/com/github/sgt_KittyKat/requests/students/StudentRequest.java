@@ -1,9 +1,9 @@
-package com.github.sgt_KittyKat.Requests.Students;
+package com.github.sgt_KittyKat.requests.students;
 
-import com.github.sgt_KittyKat.Database.Config.DatabaseTools;
+import com.github.sgt_KittyKat.database.config.DatabaseTools;
 
-import com.github.sgt_KittyKat.Database.Models.Student;
-import com.github.sgt_KittyKat.Requests.Request;
+import com.github.sgt_KittyKat.database.models.Student;
+import com.github.sgt_KittyKat.requests.Request;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 

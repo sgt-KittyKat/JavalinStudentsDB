@@ -1,4 +1,4 @@
-package com.github.sgt_KittyKat.Requests.Students;
+package com.github.sgt_KittyKat.requests.students;
 
 import java.sql.SQLException;
 

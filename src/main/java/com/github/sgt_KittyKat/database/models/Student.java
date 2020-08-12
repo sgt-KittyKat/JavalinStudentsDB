@@ -1,4 +1,4 @@
-package com.github.sgt_KittyKat.Database.Models;
+package com.github.sgt_KittyKat.database.models;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -11,8 +11,8 @@ public class Student {
     private String name;
     @DatabaseField
     private String surname;
-    @DatabaseField(foreign = true)
-    private Group group;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private StudentsGroup group;
     private int groupId;
     public Student(int id, String name, String surname, int groupId) {
         this.id = id;
@@ -56,11 +56,11 @@ public class Student {
         this.surname = surname;
     }
 
-    public Group getGroup() {
+    public StudentsGroup getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(StudentsGroup group) {
         this.group = group;
     }
 

@@ -1,23 +1,18 @@
-package com.github.sgt_KittyKat.Javalin;
+package com.github.sgt_KittyKat.javalin;
 
-import com.github.sgt_KittyKat.Database.Models.Group;
-import com.github.sgt_KittyKat.Database.Models.Student;
-import com.github.sgt_KittyKat.Requests.Groups.GroupDeleter;
-import com.github.sgt_KittyKat.Requests.Groups.GroupGetter;
-import com.github.sgt_KittyKat.Requests.Groups.GroupPatcher;
-import com.github.sgt_KittyKat.Requests.Groups.GroupPoster;
-import com.github.sgt_KittyKat.Requests.Students.StudentDeleter;
-import com.github.sgt_KittyKat.Requests.Students.StudentGetter;
-import com.github.sgt_KittyKat.Requests.Students.StudentPatcher;
-import com.github.sgt_KittyKat.Requests.Students.StudentPoster;
+import com.github.sgt_KittyKat.database.models.StudentsGroup;
+import com.github.sgt_KittyKat.database.models.Student;
+import com.github.sgt_KittyKat.requests.groups.GroupDeleter;
+import com.github.sgt_KittyKat.requests.groups.GroupGetter;
+import com.github.sgt_KittyKat.requests.groups.GroupPatcher;
+import com.github.sgt_KittyKat.requests.groups.GroupPoster;
+import com.github.sgt_KittyKat.requests.students.StudentDeleter;
+import com.github.sgt_KittyKat.requests.students.StudentGetter;
+import com.github.sgt_KittyKat.requests.students.StudentPatcher;
+import com.github.sgt_KittyKat.requests.students.StudentPoster;
 import io.javalin.Javalin;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -75,9 +70,9 @@ public class Main {
 
         app.get("/groups", context -> {
            GroupGetter getter = new GroupGetter();
-           List<Group> groups = getter.getAll();
+           List<StudentsGroup> groups = getter.getAll();
            String result = new String();
-           for (Group group : groups) {
+           for (StudentsGroup group : groups) {
                result += group.toString() + "\n";
            }
            context.result(result);
@@ -98,14 +93,14 @@ public class Main {
             GroupPatcher patcher = new GroupPatcher();
             Integer id = Integer.parseInt(context.pathParam("id"));
             String name = context.pathParam("name");
-            patcher.patch(new Group(id, name));
+            patcher.patch(new StudentsGroup(id, name));
             context.result("patched group " + id);
         });
         app.post("/group/:id/:name", context -> {
             GroupPoster poster = new GroupPoster();
             Integer id = Integer.parseInt(context.pathParam("id"));
             String name = context.pathParam("name");
-            poster.post(new Group(id, name));
+            poster.post(new StudentsGroup(id, name));
             context.result("posted group " + id);
         });
     }

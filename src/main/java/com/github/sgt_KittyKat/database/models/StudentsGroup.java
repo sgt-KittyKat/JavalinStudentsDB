@@ -1,10 +1,10 @@
-package com.github.sgt_KittyKat.Database.Models;
+package com.github.sgt_KittyKat.database.models;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
-public class Group {
+public class StudentsGroup {
     @DatabaseField(id = true)
     private int id;
     @DatabaseField
@@ -18,10 +18,10 @@ public class Group {
                 '}';
     }
 
-    public Group() {
+    public StudentsGroup() {
     }
 
-    public Group(int id, String name) {
+    public StudentsGroup(int id, String name) {
         this.id = id;
         this.name = name;
     }
