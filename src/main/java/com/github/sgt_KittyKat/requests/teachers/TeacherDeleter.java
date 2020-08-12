@@ -1,8 +1,8 @@
-package com.github.sgt_KittyKat.requests.groups;
+package com.github.sgt_KittyKat.requests.teachers;
 
 import java.sql.SQLException;
 
-public class GroupDeleter implements GroupRequest {
+public class TeacherDeleter implements TeacherRequest {
     public void delete(int id) throws SQLException {
         dao().deleteById(id);
     }

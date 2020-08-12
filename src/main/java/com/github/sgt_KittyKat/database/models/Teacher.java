@@ -4,25 +4,31 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
-public class Student {
+public class Teacher {
     @DatabaseField(id = true)
     private int id;
     @DatabaseField
     private String name;
     @DatabaseField
     private String surname;
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
-    private StudentsGroup group;
-    public Student(int id, String name, String surname, StudentsGroup group) {
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
+    }
+
+    public Teacher(int id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.group = group;
     }
 
-    public Student() {
+    public Teacher() {
     }
-
 
     public int getId() {
         return id;
@@ -46,23 +52,5 @@ public class Student {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public StudentsGroup getGroup() {
-        return group;
-    }
-
-    public void setGroup(StudentsGroup group) {
-        this.group = group;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", group= " + group +
-                '}';
     }
 }

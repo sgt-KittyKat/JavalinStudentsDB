@@ -9,21 +9,26 @@ public class StudentsGroup {
     private int id;
     @DatabaseField
     private String name;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private Teacher teacher;
 
     @Override
     public String toString() {
-        return "Group{" +
+        return "StudentsGroup{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", teacher=" + teacher +
                 '}';
     }
+
 
     public StudentsGroup() {
     }
 
-    public StudentsGroup(int id, String name) {
+    public StudentsGroup(int id, String name, Teacher teacher) {
         this.id = id;
         this.name = name;
+        this.teacher = teacher;
     }
 
     public int getId() {
@@ -40,5 +45,13 @@ public class StudentsGroup {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }
