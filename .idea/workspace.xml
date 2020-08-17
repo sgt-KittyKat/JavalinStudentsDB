@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e3e06e1d-ca39-476c-b094-86b9bf99c961" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/config/DatabaseTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/config/DatabaseTools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/database/models/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/javalin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/sgt_KittyKat/javalin/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +31,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RunAnythingCache">
@@ -78,6 +79,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixed groups bug" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="189" y="19" key="#Project_Structure" timestamp="1597640035873">
+      <screen x="0" y="0" width="1193" height="720" />
+    </state>
+    <state x="189" y="19" key="#Project_Structure/0.0.1193.720@0.0.1193.720" timestamp="1597640035873" />
     <state x="400" y="45" key="#com.intellij.ide.util.MemberChooser" timestamp="1597210833688">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
@@ -94,30 +99,30 @@
       <screen x="0" y="0" width="1193" height="720" />
     </state>
     <state x="151" y="0" key="CommitChangelistDialog2/0.0.1193.720@0.0.1193.720" timestamp="1597206098744" />
-    <state width="1193" height="223" key="GridCell.Tab.0.bottom" timestamp="1597212128062">
+    <state width="1193" height="223" key="GridCell.Tab.0.bottom" timestamp="1597643391517">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state width="1193" height="223" key="GridCell.Tab.0.bottom/0.0.1193.720@0.0.1193.720" timestamp="1597212128062" />
-    <state width="1193" height="223" key="GridCell.Tab.0.center" timestamp="1597212128062">
+    <state width="1193" height="223" key="GridCell.Tab.0.bottom/0.0.1193.720@0.0.1193.720" timestamp="1597643391517" />
+    <state width="1193" height="223" key="GridCell.Tab.0.center" timestamp="1597643391517">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state width="1193" height="223" key="GridCell.Tab.0.center/0.0.1193.720@0.0.1193.720" timestamp="1597212128062" />
-    <state width="1193" height="223" key="GridCell.Tab.0.left" timestamp="1597212128062">
+    <state width="1193" height="223" key="GridCell.Tab.0.center/0.0.1193.720@0.0.1193.720" timestamp="1597643391517" />
+    <state width="1193" height="223" key="GridCell.Tab.0.left" timestamp="1597643391517">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state width="1193" height="223" key="GridCell.Tab.0.left/0.0.1193.720@0.0.1193.720" timestamp="1597212128062" />
-    <state width="1193" height="223" key="GridCell.Tab.0.right" timestamp="1597212128062">
+    <state width="1193" height="223" key="GridCell.Tab.0.left/0.0.1193.720@0.0.1193.720" timestamp="1597643391517" />
+    <state width="1193" height="223" key="GridCell.Tab.0.right" timestamp="1597643391517">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state width="1193" height="223" key="GridCell.Tab.0.right/0.0.1193.720@0.0.1193.720" timestamp="1597212128062" />
-    <state x="261" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1597204924563">
+    <state width="1193" height="223" key="GridCell.Tab.0.right/0.0.1193.720@0.0.1193.720" timestamp="1597643391517" />
+    <state x="261" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1597637334532">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state x="261" y="185" key="com.intellij.ide.util.TipDialog/0.0.1193.720@0.0.1193.720" timestamp="1597204924563" />
-    <state x="253" y="161" width="672" height="677" key="run.anything.popup" timestamp="1597211012733">
+    <state x="261" y="185" key="com.intellij.ide.util.TipDialog/0.0.1193.720@0.0.1193.720" timestamp="1597637334532" />
+    <state x="253" y="161" width="672" height="677" key="run.anything.popup" timestamp="1597643223975">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
-    <state x="253" y="161" width="672" height="677" key="run.anything.popup/0.0.1193.720@0.0.1193.720" timestamp="1597211012733" />
+    <state x="253" y="161" width="672" height="677" key="run.anything.popup/0.0.1193.720@0.0.1193.720" timestamp="1597643223975" />
     <state x="259" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1597056197147">
       <screen x="0" y="0" width="1193" height="720" />
     </state>
