@@ -8,6 +8,7 @@ import com.github.sgt_KittyKat.universalRequests.Crud;
 import io.javalin.Javalin;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,7 +22,6 @@ public class Main {
     public static void javalinStudentsSetup(Javalin app) {
         Crud<Student> crud = new Crud<>();
         app.get("/students", context ->{
-
             String result = new String();
             List<Student> students = crud.getAll(Student.class);
             for (Student student : students) {
@@ -44,37 +44,40 @@ public class Main {
             context.result("deleted student " + id);
         });
 
-        app.patch("/student/:id/:name/:surname/:groupId/:supervisorId", context -> {
+        app.patch("/student", context -> {
+            Scanner scanner = new Scanner(context.body());
+            Integer id = Integer.parseInt(scanner.nextLine());
+            String name = scanner.nextLine();
+            String surname = scanner.nextLine();
+            Integer groupId = Integer.parseInt(scanner.nextLine());
+            Integer superId = Integer.parseInt(scanner.nextLine());
 
-            Integer id = Integer.parseInt(context.pathParam("id"));
+            Crud<StudentsGroup> groupCrud = new Crud<>();
+            Crud<Supervisor> superCrud = new Crud<>();
 
-            String name = context.pathParam("name");
-            String surname = context.pathParam("surname");
-
-            Integer groupId = Integer.parseInt(context.pathParam("groupId"));
-            Crud <StudentsGroup> groupCrud = new Crud<>();
             StudentsGroup group = groupCrud.get(groupId, StudentsGroup.class);
+            Supervisor supervisor = superCrud.get(superId, Supervisor.class);
 
-            Integer superId = Integer.parseInt(context.pathParam("supervisorId"));
-            Crud <Supervisor> superCrud = new Crud<>();
-            Supervisor supervisor = superCrud.get(groupId, Supervisor.class);
             crud.patch(new Student(id, name, surname, group, supervisor), Student.class);
+            context.result("patched student " + id);
         });
-        app.post("/student/:id/:name/:surname/:groupId/:supervisorId", context -> {
+        app.post("/student", context -> {
 
-            Integer id = Integer.parseInt(context.pathParam("id"));
+            Scanner scanner = new Scanner(context.body());
+            Integer id = Integer.parseInt(scanner.nextLine());
+            String name = scanner.nextLine();
+            String surname = scanner.nextLine();
+            Integer groupId = Integer.parseInt(scanner.nextLine());
+            Integer superId = Integer.parseInt(scanner.nextLine());
 
-            String name = context.pathParam("name");
-            String surname = context.pathParam("surname");
+            Crud<StudentsGroup> groupCrud = new Crud<>();
+            Crud<Supervisor> superCrud = new Crud<>();
 
-            Integer groupId = Integer.parseInt(context.pathParam("groupId"));
-            Crud <StudentsGroup> groupCrud = new Crud<>();
             StudentsGroup group = groupCrud.get(groupId, StudentsGroup.class);
+            Supervisor supervisor = superCrud.get(superId, Supervisor.class);
 
-            Integer superId = Integer.parseInt(context.pathParam("supervisorId"));
-            Crud <Supervisor> superCrud = new Crud<>();
-            Supervisor supervisor = superCrud.get(groupId, Supervisor.class);
             crud.post(new Student(id, name, surname, group, supervisor), Student.class);
+            context.result("Posted student " + id);
         });
     }
     public static void javalinGroupsSetup(Javalin app) {
@@ -100,28 +103,30 @@ public class Main {
             crud.delete(id, StudentsGroup.class);
             context.result("deleted group" + id);
         });
-        app.patch("/group/:id/:name/:teacherId", context -> {
+        app.patch("/group", context -> {
+            Scanner scanner = new Scanner(context.body());
+            Integer id = Integer.parseInt(scanner.nextLine());
+            String name = scanner.nextLine();
+            Integer teacherId = Integer.parseInt(scanner.nextLine());
 
-            Integer id = Integer.parseInt(context.pathParam("id"));
+            Crud<Teacher> teacherCrud= new Crud<>();
 
-            String name = context.pathParam("name");
-
-            Integer teacherId = Integer.parseInt(context.pathParam("teacherId"));
-            Crud<Teacher> teachercrud = new Crud<Teacher>();
-            Teacher teacher = teachercrud.get(teacherId, Teacher.class);
+            Teacher teacher = teacherCrud.get(teacherId, Teacher.class);
 
             crud.patch(new StudentsGroup(id, name, teacher), StudentsGroup.class);
+
             context.result("patched group " + id);
         });
-        app.post("/group/:id/:name/:teacherId", context -> {
+        app.post("/group", context -> {
 
-            Integer id = Integer.parseInt(context.pathParam("id"));
+            Scanner scanner = new Scanner(context.body());
+            Integer id = Integer.parseInt(scanner.nextLine());
+            String name = scanner.nextLine();
+            Integer teacherId = Integer.parseInt(scanner.nextLine());
 
-            String name = context.pathParam("name");
+            Crud<Teacher> teacherCrud= new Crud<>();
 
-            Integer teacherId = Integer.parseInt(context.pathParam("teacherId"));
-            Crud<Teacher> teachercrud = new Crud<Teacher>();
-            Teacher teacher = teachercrud.get(teacherId, Teacher.class);
+            Teacher teacher = teacherCrud.get(teacherId, Teacher.class);
 
             crud.post(new StudentsGroup(id, name, teacher), StudentsGroup.class);
             context.result("posted group " + id);
@@ -149,19 +154,23 @@ public class Main {
             crud.delete(id, Teacher.class);
             context.result("deleted teacher " + id);
         });
-        app.post("/teacher/:id/:name/:surname" , context -> {
+        app.post("/teacher" , context -> {
+            Scanner scanner = new Scanner(context.body());
 
-            Integer id = Integer.parseInt(context.pathParam("id"));
-            String name = context.pathParam("name");
-            String surname = context.pathParam("surname");
+            Integer id = Integer.parseInt(scanner.nextLine());
+            String name = scanner.nextLine();
+            String surname = scanner.nextLine();
+
             crud.post(new Teacher(id, name, surname), Teacher.class);
             context.result("posted teacher " + id);
         });
-        app.patch("/teacher/:id/:name/:surname", context -> {
+        app.patch("/teacher", context -> {
+            Scanner scanner = new Scanner(context.body());
 
-            Integer id = Integer.parseInt(context.pathParam("id"));
-            String name = context.pathParam("name");
-            String surname = context.pathParam("surname");
+            Integer id = Integer.parseInt(scanner.nextLine());
+            String name = scanner.nextLine();
+            String surname = scanner.nextLine();
+
             crud.patch(new Teacher(id, name, surname), Teacher.class);
             context.result("patched teacher " + id);
         });
@@ -182,24 +191,28 @@ public class Main {
             Integer id = Integer.parseInt(context.pathParam("id"));
             context.result(crud.get(id, Supervisor.class).toString());
         });
-        app.delete("supervisor/:id", context -> {
+        app.delete("/supervisor/:id", context -> {
 
             Integer id = Integer.parseInt(context.pathParam("id"));
             crud.delete(id, Supervisor.class);
             context.result("deleted supervisor " + id);
         });
-        app.post("supervisor/:id/:name/:surname" , context -> {
+        app.post("/supervisor" , context -> {
+            Scanner scanner = new Scanner(context.body());
 
-            Integer id = Integer.parseInt(context.pathParam("id"));
-            String name = context.pathParam("name");
-            String surname = context.pathParam("surname");
+            Integer id = Integer.parseInt(scanner.nextLine());
+            String name = scanner.nextLine();
+            String surname = scanner.nextLine();
+
             crud.post(new Supervisor(id, name, surname), Supervisor.class);
             context.result("posted supervisor" + id);
         });
-        app.patch("supervisor/:id/:name/:surname", context -> {
-            Integer id = Integer.parseInt(context.pathParam("id"));
-            String name = context.pathParam("name");
-            String surname = context.pathParam("surname");
+        app.patch("/supervisor", context -> {
+            Scanner scanner = new Scanner(context.body());
+
+            Integer id = Integer.parseInt(scanner.nextLine());
+            String name = scanner.nextLine();
+            String surname = scanner.nextLine();
             crud.patch(new Supervisor(id, name, surname), Supervisor.class);
             context.result("patched supervisor " + id);
         });
