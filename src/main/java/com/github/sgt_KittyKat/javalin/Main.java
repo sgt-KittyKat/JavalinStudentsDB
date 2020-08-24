@@ -1,5 +1,6 @@
 package com.github.sgt_KittyKat.javalin;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.sgt_KittyKat.database.models.StudentsGroup;
 import com.github.sgt_KittyKat.database.models.Student;
 import com.github.sgt_KittyKat.database.models.Supervisor;
@@ -21,20 +22,19 @@ public class Main {
     }
     public static void javalinStudentsSetup(Javalin app) {
         Crud<Student> crud = new Crud<>();
+        ObjectMapper mp = new ObjectMapper();
         app.get("/students", context ->{
-            String result = new String();
+
             List<Student> students = crud.getAll(Student.class);
-            for (Student student : students) {
-                result += student.toString() + "\n";
-            }
-            context.result(result);
+
+            context.result(mp.writeValueAsString(students));
         });
 
 
         app.get("/student/:id", context ->{
 
             Integer id = Integer.parseInt(context.pathParam("id"));
-            context.result(crud.get(id, Student.class).toString());
+            context.result(mp.writeValueAsString(crud.get(id, Student.class)));
         });
 
         app.delete("/student/:id", context -> {
@@ -82,20 +82,16 @@ public class Main {
     }
     public static void javalinGroupsSetup(Javalin app) {
         Crud<StudentsGroup> crud = new Crud<>();
+        ObjectMapper om = new ObjectMapper();
         app.get("/groups", context -> {
-
            List<StudentsGroup> groups = crud.getAll(StudentsGroup.class);
-           String result = new String();
-           for (StudentsGroup group : groups) {
-               result += group.toString() + "\n";
-           }
-           context.result(result);
+           context.result(om.writeValueAsString(groups));
         });
 
         app.get("/group/:id", context -> {
 
             Integer id = Integer.parseInt(context.pathParam("id"));
-            context.result(crud.get(id, StudentsGroup.class).toString());
+            context.result(om.writeValueAsString(crud.get(id, StudentsGroup.class)));
         });
         app.delete("/group/:id", context -> {
 
@@ -118,7 +114,6 @@ public class Main {
             context.result("patched group " + id);
         });
         app.post("/group", context -> {
-
             Scanner scanner = new Scanner(context.body());
             Integer id = Integer.parseInt(scanner.nextLine());
             String name = scanner.nextLine();
@@ -134,19 +129,17 @@ public class Main {
     }
     public static void javalinTeacherSetup(Javalin app) {
         Crud<Teacher> crud = new Crud<>();
+        ObjectMapper om = new ObjectMapper();
         app.get("/teacher/:id", context -> {
 
             Integer id = Integer.parseInt(context.pathParam("id"));
-            context.result(crud.get(id, Teacher.class).toString());
+            context.result(om.writeValueAsString(crud.get(id, Teacher.class)));
         });
         app.get("/teachers", context -> {
 
             List <Teacher> teachers = crud.getAll(Teacher.class);
-            String result = new String();
-            for (Teacher teacher : teachers) {
-                result += teacher.toString() + "\n";
-            }
-            context.result(result);
+
+            context.result(om.writeValueAsString(teachers));
         });
         app.delete("/teacher/:id", context -> {
 
@@ -177,19 +170,17 @@ public class Main {
     }
     public static void javalinSupervisorSetup(Javalin app) {
         Crud<Supervisor> crud = new Crud<>();
+        ObjectMapper om = new ObjectMapper();
         app.get("/supervisors", context -> {
 
             List<Supervisor> supervisors = crud.getAll(Supervisor.class);
-            String result = new String();
-            for (Supervisor supervisor : supervisors) {
-                result += supervisor.toString() + "\n";
-            }
-            context.result(result);
+
+            context.result(om.writeValueAsString(supervisors));
         });
         app.get("/supervisor/:id" , context -> {
 
             Integer id = Integer.parseInt(context.pathParam("id"));
-            context.result(crud.get(id, Supervisor.class).toString());
+            context.result(om.writeValueAsString(crud.get(id, Supervisor.class)));
         });
         app.delete("/supervisor/:id", context -> {
 
