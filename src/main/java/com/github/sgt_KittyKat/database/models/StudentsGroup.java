@@ -1,11 +1,12 @@
 package com.github.sgt_KittyKat.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
 public class StudentsGroup {
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
     private int id;
     @DatabaseField
     private String name;
@@ -25,8 +26,8 @@ public class StudentsGroup {
     public StudentsGroup() {
     }
 
-    public StudentsGroup(int id, String name, Teacher teacher) {
-        this.id = id;
+    public StudentsGroup(String name, Teacher teacher) {
+        this.id = 0;
         this.name = name;
         this.teacher = teacher;
     }
@@ -54,4 +55,5 @@ public class StudentsGroup {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
+
 }

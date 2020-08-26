@@ -1,11 +1,12 @@
 package com.github.sgt_KittyKat.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
 public class Student {
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
     private int id;
     @DatabaseField
     private String name;
@@ -15,8 +16,8 @@ public class Student {
     private StudentsGroup group;
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Supervisor supervisor;
-    public Student(int id, String name, String surname, StudentsGroup group, Supervisor supervisor) {
-        this.id = id;
+    public Student(String name, String surname, StudentsGroup group, Supervisor supervisor) {
+        this.id = 0;
         this.name = name;
         this.surname = surname;
         this.group = group;
@@ -57,11 +58,9 @@ public class Student {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
     public StudentsGroup getGroup() {
         return group;
     }
-
     public void setGroup(StudentsGroup group) {
         this.group = group;
     }

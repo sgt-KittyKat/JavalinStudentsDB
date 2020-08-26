@@ -1,12 +1,18 @@
 package com.github.sgt_KittyKat.javalin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.github.sgt_KittyKat.database.models.StudentsGroup;
 import com.github.sgt_KittyKat.database.models.Student;
 import com.github.sgt_KittyKat.database.models.Supervisor;
 import com.github.sgt_KittyKat.database.models.Teacher;
+import com.github.sgt_KittyKat.deserializers.StudentDeserializer;
+import com.github.sgt_KittyKat.deserializers.StudentsGroupDeserializer;
+import com.github.sgt_KittyKat.deserializers.SupervisorDeserializer;
+import com.github.sgt_KittyKat.deserializers.TeacherDeserializer;
 import com.github.sgt_KittyKat.universalRequests.Crud;
 import io.javalin.Javalin;
+import org.eclipse.jetty.websocket.server.WebSocketHandler;
 
 import java.util.List;
 import java.util.Scanner;
@@ -22,19 +28,23 @@ public class Main {
     }
     public static void javalinStudentsSetup(Javalin app) {
         Crud<Student> crud = new Crud<>();
-        ObjectMapper mp = new ObjectMapper();
+        ObjectMapper om = new ObjectMapper();
+
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(Student.class, new StudentDeserializer());
+
+        om.registerModule(module);
         app.get("/students", context ->{
 
             List<Student> students = crud.getAll(Student.class);
 
-            context.result(mp.writeValueAsString(students));
+            context.result(om.writeValueAsString(students));
         });
 
 
         app.get("/student/:id", context ->{
-
             Integer id = Integer.parseInt(context.pathParam("id"));
-            context.result(mp.writeValueAsString(crud.get(id, Student.class)));
+            context.result(om.writeValueAsString(crud.get(id, Student.class)));
         });
 
         app.delete("/student/:id", context -> {
@@ -44,45 +54,30 @@ public class Main {
             context.result("deleted student " + id);
         });
 
-        app.patch("/student", context -> {
-            Scanner scanner = new Scanner(context.body());
-            Integer id = Integer.parseInt(scanner.nextLine());
-            String name = scanner.nextLine();
-            String surname = scanner.nextLine();
-            Integer groupId = Integer.parseInt(scanner.nextLine());
-            Integer superId = Integer.parseInt(scanner.nextLine());
-
-            Crud<StudentsGroup> groupCrud = new Crud<>();
-            Crud<Supervisor> superCrud = new Crud<>();
-
-            StudentsGroup group = groupCrud.get(groupId, StudentsGroup.class);
-            Supervisor supervisor = superCrud.get(superId, Supervisor.class);
-
-            crud.patch(new Student(id, name, surname, group, supervisor), Student.class);
-            context.result("patched student " + id);
+        app.patch("/student/:id", context -> {
+            int id = Integer.parseInt(context.pathParam("id"));
+            String json = context.body();
+            Student student = om.readValue(json, Student.class);
+            student.setId(id);
+            crud.patch(student, Student.class);
+            context.result("patched student " + student.getId());
         });
         app.post("/student", context -> {
 
-            Scanner scanner = new Scanner(context.body());
-            Integer id = Integer.parseInt(scanner.nextLine());
-            String name = scanner.nextLine();
-            String surname = scanner.nextLine();
-            Integer groupId = Integer.parseInt(scanner.nextLine());
-            Integer superId = Integer.parseInt(scanner.nextLine());
+            String json = context.body();
+            Student student = om.readValue(json, Student.class);
 
-            Crud<StudentsGroup> groupCrud = new Crud<>();
-            Crud<Supervisor> superCrud = new Crud<>();
+            crud.post(student, Student.class);
 
-            StudentsGroup group = groupCrud.get(groupId, StudentsGroup.class);
-            Supervisor supervisor = superCrud.get(superId, Supervisor.class);
-
-            crud.post(new Student(id, name, surname, group, supervisor), Student.class);
-            context.result("Posted student " + id);
+            context.result("Posted student " + student.getId());
         });
     }
     public static void javalinGroupsSetup(Javalin app) {
         Crud<StudentsGroup> crud = new Crud<>();
         ObjectMapper om = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(StudentsGroup.class , new StudentsGroupDeserializer());
+        om.registerModule(module);
         app.get("/groups", context -> {
            List<StudentsGroup> groups = crud.getAll(StudentsGroup.class);
            context.result(om.writeValueAsString(groups));
@@ -99,37 +94,29 @@ public class Main {
             crud.delete(id, StudentsGroup.class);
             context.result("deleted group" + id);
         });
-        app.patch("/group", context -> {
-            Scanner scanner = new Scanner(context.body());
-            Integer id = Integer.parseInt(scanner.nextLine());
-            String name = scanner.nextLine();
-            Integer teacherId = Integer.parseInt(scanner.nextLine());
+        app.patch("/group/:id", context -> {
+            String json = context.body();
+            int id = Integer.parseInt(context.pathParam("id"));
+            StudentsGroup group = om.readValue(json, StudentsGroup.class);
+            group.setId(id);
+            crud.patch(group, StudentsGroup.class);
 
-            Crud<Teacher> teacherCrud= new Crud<>();
-
-            Teacher teacher = teacherCrud.get(teacherId, Teacher.class);
-
-            crud.patch(new StudentsGroup(id, name, teacher), StudentsGroup.class);
-
-            context.result("patched group " + id);
+            context.result("patched group " + group.getId());
         });
         app.post("/group", context -> {
-            Scanner scanner = new Scanner(context.body());
-            Integer id = Integer.parseInt(scanner.nextLine());
-            String name = scanner.nextLine();
-            Integer teacherId = Integer.parseInt(scanner.nextLine());
+            String json = context.body();
+            StudentsGroup group = om.readValue(json, StudentsGroup.class);
 
-            Crud<Teacher> teacherCrud= new Crud<>();
-
-            Teacher teacher = teacherCrud.get(teacherId, Teacher.class);
-
-            crud.post(new StudentsGroup(id, name, teacher), StudentsGroup.class);
-            context.result("posted group " + id);
+            crud.post(group, StudentsGroup.class);
+            context.result("posted group " + group.getId());
         });
     }
     public static void javalinTeacherSetup(Javalin app) {
         Crud<Teacher> crud = new Crud<>();
         ObjectMapper om = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(Teacher.class, new TeacherDeserializer());
+        om.registerModule(module);
         app.get("/teacher/:id", context -> {
 
             Integer id = Integer.parseInt(context.pathParam("id"));
@@ -148,29 +135,25 @@ public class Main {
             context.result("deleted teacher " + id);
         });
         app.post("/teacher" , context -> {
-            Scanner scanner = new Scanner(context.body());
-
-            Integer id = Integer.parseInt(scanner.nextLine());
-            String name = scanner.nextLine();
-            String surname = scanner.nextLine();
-
-            crud.post(new Teacher(id, name, surname), Teacher.class);
-            context.result("posted teacher " + id);
+            String json = context.body();
+            Teacher teacher = om.readValue(json, Teacher.class);
+            crud.post(teacher, Teacher.class);
+            context.result("posted teacher " + teacher.getId());
         });
-        app.patch("/teacher", context -> {
-            Scanner scanner = new Scanner(context.body());
-
-            Integer id = Integer.parseInt(scanner.nextLine());
-            String name = scanner.nextLine();
-            String surname = scanner.nextLine();
-
-            crud.patch(new Teacher(id, name, surname), Teacher.class);
+        app.patch("/teacher/:id", context -> {
+            String json = context.body();
+            Integer id = Integer.parseInt(context.pathParam("id"));
+            Teacher teacher = om.readValue(json, Teacher.class);
+            teacher.setId(id);
+            crud.patch(teacher, Teacher.class);
             context.result("patched teacher " + id);
         });
     }
     public static void javalinSupervisorSetup(Javalin app) {
         Crud<Supervisor> crud = new Crud<>();
         ObjectMapper om = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(Supervisor.class, new SupervisorDeserializer());
         app.get("/supervisors", context -> {
 
             List<Supervisor> supervisors = crud.getAll(Supervisor.class);
@@ -189,22 +172,21 @@ public class Main {
             context.result("deleted supervisor " + id);
         });
         app.post("/supervisor" , context -> {
-            Scanner scanner = new Scanner(context.body());
+            String json = context.body();
 
-            Integer id = Integer.parseInt(scanner.nextLine());
-            String name = scanner.nextLine();
-            String surname = scanner.nextLine();
+            Supervisor supervisor = om.readValue(json, Supervisor.class);
+            crud.post(supervisor, Supervisor.class);
 
-            crud.post(new Supervisor(id, name, surname), Supervisor.class);
-            context.result("posted supervisor" + id);
+            context.result("posted supervisor" + supervisor.getId());
         });
-        app.patch("/supervisor", context -> {
-            Scanner scanner = new Scanner(context.body());
+        app.patch("/supervisor/:id", context -> {
 
-            Integer id = Integer.parseInt(scanner.nextLine());
-            String name = scanner.nextLine();
-            String surname = scanner.nextLine();
-            crud.patch(new Supervisor(id, name, surname), Supervisor.class);
+            String json = context.body();
+            Integer id = Integer.parseInt(context.pathParam("id"));
+            Supervisor supervisor = om.readValue(json, Supervisor.class);
+
+            crud.post(supervisor, Supervisor.class);
+
             context.result("patched supervisor " + id);
         });
     }

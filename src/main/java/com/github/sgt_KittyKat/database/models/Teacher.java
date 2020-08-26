@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
 public class Teacher {
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
     private int id;
     @DatabaseField
     private String name;
@@ -21,8 +21,8 @@ public class Teacher {
                 '}';
     }
 
-    public Teacher(int id, String name, String surname) {
-        this.id = id;
+    public Teacher(String name, String surname) {
+        this.id = 0;
         this.name = name;
         this.surname = surname;
     }

@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
 public class Supervisor {
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
     private int id;
     @DatabaseField
     private String name;
@@ -21,12 +21,11 @@ public class Supervisor {
                 '}';
     }
 
-    public Supervisor(int id, String name, String surname) {
-        this.id = id;
+    public Supervisor(String name, String surname) {
+        this.id = 0;
         this.name = name;
         this.surname = surname;
     }
-
     public Supervisor() {
     }
 
